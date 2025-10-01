@@ -236,7 +236,7 @@
       imports = [ inputs.flake-parts.flakeModules.modules ];
 
       flake.modules.flake = {
-        compootuers = { inherit compootuers; };
+        inherit compootuers;
         default = compootuers;
       };
 
