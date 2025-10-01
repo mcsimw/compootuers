@@ -11,9 +11,19 @@
 
   outputs =
     inputs:
+    let
+      allowedSystems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+
+      systems = allowedSystems;
+
       imports = [ inputs.flake-parts.flakeModules.modules ];
-      flake.modules.flake.compootuers =
+
+      flake.modules.nixos.default =
         {
           config,
           inputs,
@@ -25,10 +35,8 @@
         }:
 
         let
-          allowedSystems = [
-            "aarch64-linux"
-            "x86_64-linux"
-          ];
+          inherit allowedSystems;
+
           modulesPath = "${inputs.nixpkgs.outPath}/nixos/modules";
 
           genHostId = hostName: builtins.substring 0 8 <| builtins.hashString "md5" hostName;
