@@ -16,14 +16,8 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
-    in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
 
-      systems = allowedSystems;
-
-      imports = [ inputs.flake-parts.flakeModules.modules ];
-
-      flake.modules.flake.default =
+      compootuers =
         {
           config,
           inputs,
@@ -234,5 +228,17 @@
             systems = computedCompootuers |> map ({ system, ... }: system) |> lib.unique;
           };
         };
+    in
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+
+      systems = allowedSystems;
+
+      imports = [ inputs.flake-parts.flakeModules.modules ];
+
+      flake.modules.flake = {
+        compootuers = { inherit compootuers; };
+        default = compootuers;
+      };
+
     };
 }
