@@ -13,7 +13,7 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ inputs.flake-parts.flakeModules.modules ];
-      flake.modules.nixos.compootuers =
+      flake.modules.flake.compootuers =
         {
           config,
           inputs,
