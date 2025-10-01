@@ -23,7 +23,7 @@
 
       imports = [ inputs.flake-parts.flakeModules.modules ];
 
-      flake.modules.nixos.default =
+      flake.modules.flake.default =
         {
           config,
           inputs,
