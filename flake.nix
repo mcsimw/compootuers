@@ -35,6 +35,7 @@
 
         flake.modules.flake = {
           default = self.compootuers;
+
           compootuers =
             {
               config,
