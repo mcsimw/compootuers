@@ -50,7 +50,6 @@
             let
               inherit allowedSystems;
 
-              modulesPath = "${inputs.nixpkgs.outPath}/nixos/modules";
 
               genHostId = hostName: builtins.substring 0 8 <| builtins.hashString "md5" hostName;
 
@@ -166,7 +165,7 @@
 
                     isoModules = lib.optionals iso [
                       (
-                        { lib, ... }:
+                        { lib, modulesPath, ... }:
                         {
                           imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
 
