@@ -183,7 +183,6 @@
                           });
 
                           users.users.nixos = {
-                            enable = lib.mkForce false;
                             initialPassword = "iso";
                             initialHashedPassword = lib.mkForce null;
                             hashedPassword = lib.mkForce null;
