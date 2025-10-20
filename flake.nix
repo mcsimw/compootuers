@@ -10,7 +10,7 @@
       ];
     in
     {
-      flakeModules.default =
+      flakeModule =
         {
           config,
           inputs,
