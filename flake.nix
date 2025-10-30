@@ -4,7 +4,7 @@
   outputs =
     inputs:
     let
-      allowedSystems = [
+      systems = [
         "aarch64-linux"
         "x86_64-linux"
       ];
@@ -22,7 +22,7 @@
         }:
 
         let
-          inherit allowedSystems;
+          inherit systems;
 
           genHostId = hostName: builtins.substring 0 8 <| builtins.hashString "md5" hostName;
 
@@ -80,7 +80,7 @@
                 src = "${dir}/${hostName}";
               })
               |> lib.optionals (builtins.pathExists dir)
-            ) allowedSystems
+            ) systems
             |> lib.flatten
           );
 
